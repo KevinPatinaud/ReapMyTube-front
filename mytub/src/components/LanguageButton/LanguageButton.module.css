@@ -1,0 +1,12 @@
+.divLanguage {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
+.btnLanguage {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.btnActif {
+  border: 2px;
+}

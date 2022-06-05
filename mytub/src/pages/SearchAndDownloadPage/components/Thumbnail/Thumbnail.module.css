@@ -1,0 +1,35 @@
+.thumbnail{
+    width: 300px;
+    margin-left: 30px;
+    margin-top: 30px;
+    display: inline-grid;
+    
+    cursor: pointer;
+    
+}
+
+.thumbnailTitle
+{
+color: #595959;
+    padding: 18px;
+    font-size: 20px;
+}
+
+
+.thumbnailImg
+{
+    width: 100%;
+}
+
+.thumbnailImgLoading
+{
+    opacity: 0.2;
+}
+
+.thumbnailImgLoader
+{
+    position: absolute;
+    width : 100px;
+    margin-left: 100px;
+    margin-top: 50px;
+}

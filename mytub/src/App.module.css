@@ -1,0 +1,14 @@
+body {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: fit-content;
+  text-align: center;
+  color: #595959;
+  background-color: #f3f3f3;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
