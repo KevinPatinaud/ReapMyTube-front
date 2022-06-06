@@ -3,9 +3,15 @@ import { Message } from "stompjs";
 import { v4 as uuidv4 } from "uuid";
 import { WebsocketService } from "../Websocket/Websocket.service";
 
-const websocketService = new WebsocketService();
-
 export class MediaService {
+  static websocketService = MediaService.getWebsocketService();
+
+  static getWebsocketService(): WebsocketService {
+    return MediaService.websocketService == null
+      ? new WebsocketService()
+      : MediaService.websocketService;
+  }
+
   download(urlToDownload: string, callback: Function) {
     this.generateFile(urlToDownload, (idMediaGenerated: string) => {
       callback();
@@ -21,7 +27,7 @@ export class MediaService {
       urlToDownload: urlToDownload,
     };
 
-    websocketService.simpleCallAndResponse(
+    MediaService.websocketService.simpleCallAndResponse(
       "/app/generateMedia",
       JSON.stringify(downloadMessage),
       `/media/${idCanal}/mediaGenerationEnd`,
