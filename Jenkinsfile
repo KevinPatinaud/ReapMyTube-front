@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('install') {
       steps {
+        ws(dir: '/var/lib/jenkins/workspace/manuel')
         sh 'npm install'
       }
     }
