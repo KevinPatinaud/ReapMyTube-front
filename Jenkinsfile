@@ -21,7 +21,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh 'cp -r ${WORKSPACE}/build/ /var/NodeServer/reapmytube/build'
+        sh 'cp -r ${WORKSPACE}/build/ /var/NodeServer/reapmytube/'
       }
     }
 
