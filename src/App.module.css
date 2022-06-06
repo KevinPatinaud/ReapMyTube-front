@@ -1,8 +1,9 @@
-body {
+.body {
   position: absolute;
   top: 0px;
-  width: 100%;
-  height: fit-content;
+  left: 0px;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
   text-align: center;
   color: #595959;
   background-color: #f3f3f3;
