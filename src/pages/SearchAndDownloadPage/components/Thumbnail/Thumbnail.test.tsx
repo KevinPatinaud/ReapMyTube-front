@@ -15,7 +15,9 @@ describe("When video were loaded", () => {
     let thumbnail = render(
       <AppProviders>
         <Thumbnail
-          video={{ id: "1", title: "Le tigre du Népal", image: "url" } as video}
+          videoToDisplay={
+            { id: "1", title: "Le tigre du Népal", image: "url" } as video
+          }
           onClick={() => {}}
         />
       </AppProviders>
@@ -31,7 +33,7 @@ describe("When a video is selected", () => {
 
     let thumbnail = render(
       <AppProviders>
-        <Thumbnail video={video} onClick={() => {}} />
+        <Thumbnail videoToDisplay={video} onClick={() => {}} />
       </AppProviders>
     );
 

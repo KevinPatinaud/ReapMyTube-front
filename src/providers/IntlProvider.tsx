@@ -3,7 +3,7 @@ import { IntlProvider as ReactIntlProvider } from "react-intl";
 import LanguageBus from "../bus/LanguageBus";
 import { defaultLanguage, localMessages, supportedLocale } from "../locales";
 
-const IntlProvider: FC<{ children: JSX.Element }> = (props) => {
+const IntlProvider: FC<{ children: JSX.Element }> = ({ children }) => {
   const [locale, setLocale] = useState(() => {
     let lang = navigator.language.split(/[-_]/)[0];
 
@@ -21,7 +21,7 @@ const IntlProvider: FC<{ children: JSX.Element }> = (props) => {
 
   return (
     <ReactIntlProvider locale={locale} messages={localMessages.get(locale)}>
-      {props.children}
+      {children}
     </ReactIntlProvider>
   );
 };

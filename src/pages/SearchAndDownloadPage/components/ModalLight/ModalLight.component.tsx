@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import Modal from "react-modal";
 import styles from "./ModalLight.module.css";
 
-const ModalLight: FC<{ children: JSX.Element }> = (props) => {
+const ModalLight: FC<{ children: JSX.Element }> = ({ children }) => {
   const [openned, setOpenned] = useState(true);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const ModalLight: FC<{ children: JSX.Element }> = (props) => {
       >
         X
       </button>
-      {props.children}
+      {children}
     </Modal>
   );
 };

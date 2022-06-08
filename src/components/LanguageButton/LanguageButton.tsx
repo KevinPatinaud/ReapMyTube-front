@@ -28,15 +28,15 @@ const LanguageBtn: FC<{
   countryCode: string;
   languageBtn: string;
   currentLanguage: string;
-}> = (props) => {
+}> = ({ countryCode, languageBtn, currentLanguage }) => {
   return (
     <CircleFlag
-      data-testid={props.countryCode}
-      countryCode={props.countryCode}
-      height={props.currentLanguage === props.languageBtn ? "35" : "30"}
+      data-testid={countryCode}
+      countryCode={countryCode}
+      height={currentLanguage === languageBtn ? "35" : "30"}
       className={styles.btnLanguage}
       onClick={() => {
-        LanguageBus.dispatch({ language: props.languageBtn });
+        LanguageBus.dispatch({ language: languageBtn });
       }}
     />
   );

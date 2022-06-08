@@ -5,16 +5,19 @@ import styles from "./Thumbnail.module.css";
 
 const mediaService = new MediaService();
 
-const Thumbnail: FC<{ video: video; onClick: Function }> = (props) => {
+const Thumbnail: FC<{ videoToDisplay: video; onClick: Function }> = ({
+  videoToDisplay,
+  onClick,
+}) => {
   const [displayLoader, setDisplayLoader] = useState(false);
-  const [video] = useState(props.video);
+  const [video] = useState(videoToDisplay);
 
   return (
     <div
       data-testid={`thumbnail${video.id}`}
       className={styles.thumbnail}
       onClick={async () => {
-        props.onClick();
+        onClick();
 
         setDisplayLoader(true);
 

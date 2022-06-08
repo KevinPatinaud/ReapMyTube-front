@@ -8,14 +8,14 @@ import { TranslationKeys } from "../../../../locales/constants";
 
 const youtubeService = new YoutubeService();
 
-const SearchVideo: FC<{ setVideoList: Function }> = (props) => {
+const SearchVideo: FC<{ setVideoList: Function }> = ({ setVideoList }) => {
   const [searchText, setSearchText] = useState("");
 
   const intl = useIntl();
 
   async function search() {
     await youtubeService.search(searchText).then((videoAPIresponse) => {
-      props.setVideoList(videoAPIresponse);
+      setVideoList(videoAPIresponse);
     });
   }
 
