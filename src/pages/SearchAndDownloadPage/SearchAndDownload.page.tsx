@@ -17,7 +17,7 @@ const SearchAndDownloadPage: FC = () => {
         return (
           <Thumbnail
             key={video.id}
-            video={video}
+            videoToDisplay={video}
             onClick={() => {
               setModalAlreadyDisplayed(true);
             }}
