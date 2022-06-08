@@ -31,6 +31,7 @@ const LanguageBtn: FC<{
 }> = (props) => {
   return (
     <CircleFlag
+      data-testid={props.countryCode}
       countryCode={props.countryCode}
       height={props.currentLanguage === props.languageBtn ? "35" : "30"}
       className={styles.btnLanguage}
