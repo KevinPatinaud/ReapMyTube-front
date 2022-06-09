@@ -10,3 +10,13 @@
 .btnActif {
   border: 2px;
 }
+
+@media screen and (max-width: 900px) {
+  .divLanguage {
+    top: 2px;
+    right: 2px;
+  }
+  .btnLanguage {
+    margin-right: 2px;
+  }
+}

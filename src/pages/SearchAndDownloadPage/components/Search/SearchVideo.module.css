@@ -1,29 +1,31 @@
-.searchInput
-{
-border: 3px solid #595959;
-padding: 5px;
-font-size: 20px;
-height: 30px;
-border-radius: 5px 5px 5px 5px;
-outline: #595959;
-color: #595959;
-font: 400 15px/1.8 "Lato", sans-serif;
-width : 50%;
-max-width: 700px;
+.searchInput {
+  border: 3px solid #595959;
+  padding: 5px;
+  font-size: 20px;
+  height: 30px;
+  border-radius: 5px 5px 5px 5px;
+  outline: #595959;
+  color: #595959;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  width: 720px;
 }
-
 
 .searchButton {
-    position: absolute;
-    margin-left: -45px;
-    width: 45px;
-    height: 45px;
-    border: 1px solid #595959;
-    background: #595959;
-    text-align: top;
-    color: #FFFFFF;
-    border-radius: 5px 5px 5px 5px;
-    cursor: pointer;
-    font-size: 20px;
+  position: absolute;
+  margin-left: -45px;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #595959;
+  background: #595959;
+  text-align: top;
+  color: #ffffff;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
+@media screen and (max-width: 900px) {
+  .searchInput {
+    width: 80%;
+  }
+}
