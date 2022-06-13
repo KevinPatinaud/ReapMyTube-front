@@ -2,9 +2,9 @@ import { FC, ReactNode, useState } from "react";
 
 const ChangeValueButton: FC<{
   texts: ReactNode[];
-}> = (props) => {
+}> = ({texts}) => {
   const [indexText, setIIndexText] = useState(0);
-  const textes = props.texts;
+  const textes = texts;
   return (
     <button
       type="button"

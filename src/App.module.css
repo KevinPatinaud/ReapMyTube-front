@@ -3,7 +3,7 @@
   top: 0px;
   left: 0px;
   width: -webkit-fill-available;
-  height: -webkit-fill-available;
+  min-height: -webkit-fill-available;
   text-align: center;
   color: #595959;
   background-color: #f3f3f3;

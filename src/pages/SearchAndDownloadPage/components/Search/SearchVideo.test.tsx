@@ -12,7 +12,6 @@ import { WebsocketService } from "../../../../services/Websocket/Websocket.servi
 jest.mock("../../../../services/Youtube/Youtube.service");
 
 const youtubeMock = YoutubeService as jest.MockedClass<typeof YoutubeService>;
-const websocket = WebsocketService as jest.MockedClass<typeof WebsocketService>;
 
 describe("When the user launch a research", () => {
   it("should call the Youtbe API", async () => {
