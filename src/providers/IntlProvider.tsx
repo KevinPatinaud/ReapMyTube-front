@@ -12,11 +12,10 @@ const IntlProvider: FC<{ children: JSX.Element }> = ({ children }) => {
     return lang;
   });
 
-  LanguageBus.on((data: CustomEvent) => {
-    let lang = data.detail.language;
-
-    if (!Object.values(supportedLocale).includes(lang)) lang = defaultLanguage;
-    setLocale(lang);
+  LanguageBus.on((language: string) => {
+    if (!Object.values(supportedLocale).includes(language))
+      language = defaultLanguage;
+    setLocale(language);
   });
 
   return (

@@ -5,18 +5,20 @@ import ToggleButton from "../../../../components/ChangeValueButton/ChangeValueBu
 import { YoutubeService } from "../../../../services/Youtube/Youtube.service";
 import { useIntl } from "react-intl";
 import { TranslationKeys } from "../../../../locales/constants";
+import { video } from "../../../../model/video";
 
 const youtubeService = new YoutubeService();
 
-const SearchVideo: FC<{ setVideoList: Function }> = ({ setVideoList }) => {
+const SearchVideo: FC<{ setVideoList: (videos: video[]) => void }> = ({
+  setVideoList,
+}) => {
   const [searchText, setSearchText] = useState("");
 
   const intl = useIntl();
 
   async function search() {
-    await youtubeService.search(searchText).then((videoAPIresponse) => {
-      setVideoList(videoAPIresponse);
-    });
+    const videoAPIresponse = await youtubeService.search(searchText);
+    setVideoList(videoAPIresponse);
   }
 
   return (

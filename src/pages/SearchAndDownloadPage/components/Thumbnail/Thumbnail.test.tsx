@@ -10,35 +10,41 @@ const MediaServiceMock = MediaService as jest.MockedClass<typeof MediaService>;
 MediaServiceMock.getWebsocketService = jest.fn().mockReturnValue(null);
 MediaServiceMock.prototype.download = jest.fn();
 
-describe("When video were loaded", () => {
-  it("should display videos", () => {
-    let thumbnail = render(
-      <AppProviders>
-        <Thumbnail
-          videoToDisplay={
-            { id: "1", title: "Le tigre du Népal", image: "url" } as video
-          }
-          onClick={() => {}}
-        />
-      </AppProviders>
-    );
+describe("<Thumbnail>", () => {
+  describe("When video were loaded", () => {
+    it("should display videos", () => {
+      let thumbnail = render(
+        <AppProviders>
+          <Thumbnail
+            videoToDisplay={
+              { id: "1", title: "Le tigre du Népal", image: "url" } as video
+            }
+            onClick={() => {}}
+          />
+        </AppProviders>
+      );
 
-    expect(screen.findByText("Le tigre du Népal"));
+      expect(screen.findByText("Le tigre du Népal"));
+    });
   });
-});
 
-describe("When a video is selected", () => {
-  it("should download the video", async () => {
-    let video = { id: "1", title: "Le tigre du Népal", image: "url" } as video;
+  describe("When a video is selected", () => {
+    it("should download the video", async () => {
+      let video = {
+        id: "1",
+        title: "Le tigre du Népal",
+        image: "url",
+      } as video;
 
-    let thumbnail = render(
-      <AppProviders>
-        <Thumbnail videoToDisplay={video} onClick={() => {}} />
-      </AppProviders>
-    );
+      let thumbnail = render(
+        <AppProviders>
+          <Thumbnail videoToDisplay={video} onClick={() => {}} />
+        </AppProviders>
+      );
 
-    await userEvent.click(thumbnail.getByTestId("thumbnail1"));
+      await userEvent.click(thumbnail.getByTestId("thumbnail1"));
 
-    expect(screen.findByTestId("loader1"));
+      expect(screen.findByTestId("loader1"));
+    });
   });
 });

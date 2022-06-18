@@ -28,7 +28,7 @@ export class WebsocketService {
     urlToCall: string,
     message: string,
     urlToSubscribe: string,
-    callback: Function
+    callback: (payload: Message) => void
   ) {
     if (this.stompClient) {
       this.stompClient.subscribe(urlToSubscribe, (payload: Message) => {

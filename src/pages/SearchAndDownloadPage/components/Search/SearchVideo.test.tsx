@@ -13,20 +13,22 @@ jest.mock("../../../../services/Youtube/Youtube.service");
 
 const youtubeMock = YoutubeService as jest.MockedClass<typeof YoutubeService>;
 
-describe("When the user launch a research", () => {
-  it("should call the Youtbe API", async () => {
-    youtubeMock.prototype.search.mockResolvedValue([]);
+describe("<AppProviders>", () => {
+  describe("When the user launch a research", () => {
+    it("should call the Youtbe API", async () => {
+      youtubeMock.prototype.search.mockResolvedValue([]);
 
-    const searchVideo = render(
-      <AppProviders>
-        <SearchVideo setVideoList={() => {}} />
-      </AppProviders>
-    );
+      const searchVideo = render(
+        <AppProviders>
+          <SearchVideo setVideoList={jest.fn()} />
+        </AppProviders>
+      );
 
-    userEvent.type(searchVideo.getByTestId("searchBar"), "Benabar");
+      userEvent.type(searchVideo.getByTestId("searchBar"), "Benabar");
 
-    userEvent.click(searchVideo.getByTestId("searchBtn"));
+      userEvent.click(searchVideo.getByTestId("searchBtn"));
 
-    expect(youtubeMock.prototype.search).toHaveBeenCalledWith("Benabar");
+      expect(youtubeMock.prototype.search).toHaveBeenCalledWith("Benabar");
+    });
   });
 });
