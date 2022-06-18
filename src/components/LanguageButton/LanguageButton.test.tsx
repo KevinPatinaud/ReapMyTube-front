@@ -10,6 +10,6 @@ describe("When the user click on a button language", () => {
 
     userEvent.click(screen.getByTestId("gb"));
 
-    expect(LanguageBus.dispatch).toHaveBeenCalled;
+    expect(LanguageBus.dispatch).toHaveBeenCalled();
   });
 });
