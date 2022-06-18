@@ -7,25 +7,8 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 const SearchAndDownloadPage: FC = () => {
-  const [videoList, setVideoList] = useState([] as video[]);
-  const [videoListJSX, setVideoListJSX] = useState([] as JSX.Element[]);
+  const [videosThumbnails, setVideosThumbnails] = useState([] as JSX.Element[]);
   const [modalAlreadyDisplayed, setModalAlreadyDisplayed] = useState(false);
-
-  useEffect(() => {
-    setVideoListJSX(
-      videoList.map((video) => {
-        return (
-          <Thumbnail
-            key={video.id}
-            videoToDisplay={video}
-            onClick={() => {
-              setModalAlreadyDisplayed(true);
-            }}
-          />
-        );
-      })
-    );
-  }, [videoList]);
 
   const intl = useIntl();
 
@@ -35,10 +18,22 @@ const SearchAndDownloadPage: FC = () => {
     <>
       <MemoSearchVideo
         setVideoList={useCallback((videos: video[]) => {
-          setVideoList(videos);
+          setVideosThumbnails(
+            videos.map((video) => {
+              return (
+                <Thumbnail
+                  key={video.id}
+                  videoToDisplay={video}
+                  onClick={() => {
+                    setModalAlreadyDisplayed(true);
+                  }}
+                />
+              );
+            })
+          );
         }, [])}
       />
-      {videoListJSX}
+      {videosThumbnails}
       {modalAlreadyDisplayed && (
         <ModalLight>
           <div>

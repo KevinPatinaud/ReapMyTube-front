@@ -6,6 +6,8 @@ import LanguageButton from "./LanguageButton";
 
 describe("When the user click on a button language", () => {
   it("should change the language", () => {
+    LanguageBus.dispatch = jest.fn();
+
     render(<LanguageButton />, { wrapper });
 
     userEvent.click(screen.getByTestId("gb"));
