@@ -9,7 +9,7 @@ pipeline {
 
     stage('test') {
       steps {
-        sh 'echo "do nothing"'
+        sh 'npm run test:ci'
       }
     }
 
