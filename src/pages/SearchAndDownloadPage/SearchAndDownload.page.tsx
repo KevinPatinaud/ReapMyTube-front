@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import SearchVideo from "./components/Search/SearchVideo.component";
 import Thumbnail from "./components/Thumbnail/thumbnail.component";
 import ModalLight from "./components/ModalLight/ModalLight.component";
