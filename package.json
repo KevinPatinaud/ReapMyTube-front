@@ -18,6 +18,7 @@
     "file-saver": "^2.0.5",
     "jest": "^28.1.0",
     "jest-sonar-reporter": "^2.0.0",
+    "mock-socket": "^9.1.5",
     "net": "^1.0.2",
     "react": "^18.1.0",
     "react-circle-flags": "^0.0.17",
@@ -40,7 +41,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:ci": "react-scripts test \"--coverage\" \"--watchAll=false\""
+    "test:ci": "react-scripts test \"--coverage\" \"--watchAll=false\" --detectOpenHandles"
   },
   "eslintConfig": {
     "extends": [
@@ -82,10 +83,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches":88,
-        "functions":90,
+        "branches": 88,
+        "functions": 90,
         "lines": 93,
-        "statements":93
+        "statements": 93
       }
     }
   }

@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { WebsocketService } from "../Websocket/Websocket.service";
 
 export class MediaService {
+  /*
   static websocketService = MediaService.getWebsocketService();
 
   static getWebsocketService(): WebsocketService {
@@ -36,7 +37,7 @@ export class MediaService {
       }
     );
   }
-
+*/
   private downloadFile(idCanal: string) {
     console.log(`Download of : ${idCanal}`);
 
