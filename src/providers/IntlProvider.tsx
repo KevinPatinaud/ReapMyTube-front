@@ -13,6 +13,7 @@ const IntlProvider: FC<{ children: JSX.Element }> = ({ children }) => {
   });
 
   LanguageBus.on((language: string) => {
+    console.log("IntlProvider : " + language);
     if (!Object.values(supportedLocale).includes(language))
       language = defaultLanguage;
     setLocale(language);

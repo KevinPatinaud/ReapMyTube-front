@@ -28,6 +28,7 @@
     "react-modal": "^3.15.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "react-test-renderer": "^18.2.0",
     "react-uuid": "^1.0.2",
     "sockjs-client": "^1.6.1",
     "start": "^5.1.0",
@@ -79,14 +80,16 @@
       "./src/**",
       "!src/App.tsx",
       "!src/index.tsx",
-      "!src/reportWebVitals.ts"
+      "!src/reportWebVitals.ts",
+      "!src/*d.ts",
+      "!src/services/Websocket/Websocket.service.ts"
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 88,
+        "branches": 90,
         "functions": 90,
-        "lines": 93,
-        "statements": 93
+        "lines": 90,
+        "statements": 90
       }
     }
   }

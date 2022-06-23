@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { FaFilm, FaMusic, FaSearch } from "react-icons/fa";
 import styles from "./SearchVideo.module.css";
-import ToggleButton from "../../../../components/ChangeValueButton/ChangeValueButton";
+import ChangeValueButton from "../../../../components/ChangeValueButton/ChangeValueButton.component";
 import { YoutubeService } from "../../../../services/Youtube/Youtube.service";
 import { useIntl } from "react-intl";
 import { TranslationKeys } from "../../../../locales/constants";
@@ -28,7 +28,7 @@ const SearchVideo: FC<{ setVideoList: (videos: video[]) => void }> = ({
         search();
       }}
     >
-      <ToggleButton texts={[<FaMusic />, <FaFilm />]} />
+      <ChangeValueButton values={[<FaMusic />, <FaFilm />]} />
       <input
         data-testid="searchBar"
         value={searchText}

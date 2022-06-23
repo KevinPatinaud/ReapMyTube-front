@@ -19,6 +19,7 @@ const ModalLight: FC<{ children: JSX.Element }> = ({ children }) => {
       onRequestClose={() => {
         setOpenned(false);
       }}
+      ariaHideApp={false}
       style={{
         overlay: {
           backgroundColor: "rgba(0, 0, 0, 0)",

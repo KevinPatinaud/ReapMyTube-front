@@ -1,18 +1,20 @@
+import { WebsocketService } from "../Websocket/Websocket.service";
 import { MediaService } from "./Media.serivce";
 
-jest.mock("./Media.serivce");
+jest.mock("../Websocket/Websocket.service");
 
-const MediaServiceMock = MediaService as jest.MockedClass<typeof MediaService>;
+const WebsocketServiceMock = WebsocketService as jest.MockedClass<
+  typeof WebsocketService
+>;
 
-describe("When download function is called from an other component", () => {
-  it("should generate and download the file  ", () => {
-    MediaServiceMock.getWebsocketService = jest.fn().mockReturnValue(null);
-    MediaServiceMock.prototype.download = jest.fn();
-
-    let mediaServiceMock = new MediaServiceMock();
+describe("When download the function is called", () => {
+  it("should call the backend API to generate the file ", () => {
+    const mediaService = new MediaService();
     const callback = jest.fn();
-    mediaServiceMock.download("url to download", callback);
+    mediaService.download("url to download", callback);
 
-    expect(mediaServiceMock.download).toHaveBeenCalled;
+    expect(
+      WebsocketServiceMock.prototype.simpleCallAndResponse
+    ).toHaveBeenCalled();
   });
 });

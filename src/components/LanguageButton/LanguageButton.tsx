@@ -4,6 +4,7 @@ import { supportedLocale } from "../../locales";
 import styles from "./LanguageButton.module.css";
 import { CircleFlag } from "react-circle-flags";
 import { useIntl } from "react-intl";
+import { languageBus } from "../../model/langueBus";
 
 const LanguageButton: FC = () => {
   const intl = useIntl();
@@ -36,7 +37,8 @@ const LanguageBtn: FC<{
       height={currentLanguage === languageBtn ? "35" : "30"}
       className={styles.btnLanguage}
       onClick={() => {
-        LanguageBus.dispatch({ language: languageBtn });
+        console.log("LanguageBtn : " + languageBtn);
+        LanguageBus.dispatch({ language: languageBtn } as languageBus);
       }}
     />
   );
