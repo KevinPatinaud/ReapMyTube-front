@@ -1,10 +1,10 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import Thumbnail from "./components/Thumbnail/Thumbnail.component";
-import InfoDownload from "./components/InfoDownload/InfoDownload.component";
+import Thumbnail from "./components/Thumbnail/Thumbnail";
+import InfoDownload from "./components/InfoDownload/InfoDownload";
 import React from "react";
 import { YoutubeService } from "../../services/Youtube/Youtube.service";
 import { useNavigate, useParams } from "react-router-dom";
-import FormVideo from "./components/Form/FormVideo.component";
+import FormVideo from "./components/Form/FormVideo";
 
 const youtubeService = new YoutubeService();
 

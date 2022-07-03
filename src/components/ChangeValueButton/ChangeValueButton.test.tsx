@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import ChangeValueButton from "./ChangeValueButton.component";
+import ChangeValueButton from "./ChangeValueButton";
 
 describe("<ChangeValueButton>", () => {
   describe("when the button is displayed", () => {
