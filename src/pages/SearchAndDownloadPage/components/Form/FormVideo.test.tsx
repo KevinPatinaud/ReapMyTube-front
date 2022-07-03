@@ -1,5 +1,5 @@
-import { render, waitFor } from "@testing-library/react";
-import FormVideo from "./FormVideo.component";
+import { render } from "@testing-library/react";
+import FormVideo from "./FormVideo";
 import userEvent from "@testing-library/user-event";
 import { YoutubeService } from "../../../../services/Youtube/Youtube.service";
 import { jest } from "@jest/globals";

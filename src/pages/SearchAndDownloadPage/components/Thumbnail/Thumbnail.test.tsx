@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { video } from "../../../../model/video";
-import Thumbnail from "./Thumbnail.component";
+import Thumbnail from "./Thumbnail";
 import userEvent from "@testing-library/user-event";
 import AppProviders from "../../../../providers";
 import { MediaService } from "../../../../services/Media/Media.serivce";

@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { FaFilm, FaMusic, FaSearch } from "react-icons/fa";
 import styles from "./FormVideo.module.css";
-import ChangeValueButton from "../../../../components/ChangeValueButton/ChangeValueButton.component";
+import ChangeValueButton from "../../../../components/ChangeValueButton/ChangeValueButton";
 import { useIntl } from "react-intl";
 import { TranslationKeys } from "../../../../locales/constants";
 
