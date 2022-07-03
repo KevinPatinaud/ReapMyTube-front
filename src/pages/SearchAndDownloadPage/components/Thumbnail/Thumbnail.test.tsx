@@ -13,7 +13,7 @@ MediaServiceMock.prototype.download = jest.fn();
 describe("<Thumbnail>", () => {
   describe("When video were loaded", () => {
     it("should display videos", () => {
-      let thumbnail = render(
+      render(
         <AppProviders>
           <Thumbnail
             videoToDisplay={
