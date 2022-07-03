@@ -1,50 +1,56 @@
-import { FC, useCallback, useEffect, useReducer, useState } from "react";
-import Thumbnail from "./components/Thumbnail/thumbnail.component";
+import { FC, useCallback, useEffect, useState } from "react";
+import Thumbnail from "./components/Thumbnail/Thumbnail.component";
 import InfoDownload from "./components/InfoDownload/InfoDownload.component";
 import React from "react";
-import { useIntl } from "react-intl";
 import { YoutubeService } from "../../services/Youtube/Youtube.service";
 import { useNavigate, useParams } from "react-router-dom";
 import FormVideo from "./components/Form/FormVideo.component";
+
+const youtubeService = new YoutubeService();
 
 const SearchAndDownloadPage: FC = () => {
   const [videosThumbnails, setVideosThumbnails] = useState([] as JSX.Element[]);
   const [modalAlreadyDisplayed, setModalAlreadyDisplayed] = useState(false);
   const navigate = useNavigate();
-  const intl = useIntl();
+  const [opening, setOpening] = useState(true);
   const [textToSearch, setTextTosearch] = useState(
     useParams<{ query: string }>().query
   );
 
-  const youtubeService = new YoutubeService();
+  const search = useCallback(
+    async (query: string) => {
+      console.log("search");
+      navigate("../" + query);
+      setTextTosearch(query);
 
-  const search = async (textToSearch: string) => {
-    navigate("../" + textToSearch);
-    setTextTosearch(textToSearch);
+      const videoAPIresponse =
+        query.length > 0 ? await youtubeService.search(query) : [];
 
-    const videoAPIresponse =
-      textToSearch.length > 0 ? await youtubeService.search(textToSearch) : [];
-
-    setVideosThumbnails(
-      videoAPIresponse.map((video) => {
-        return (
-          <Thumbnail
-            key={video.id}
-            videoToDisplay={video}
-            onClick={() => {
-              setModalAlreadyDisplayed(true);
-            }}
-          />
-        );
-      })
-    );
-  };
+      setVideosThumbnails(
+        videoAPIresponse.map((video) => {
+          return (
+            <Thumbnail
+              key={video.id}
+              videoToDisplay={video}
+              onClick={() => {
+                setModalAlreadyDisplayed(true);
+              }}
+            />
+          );
+        })
+      );
+    },
+    [navigate]
+  );
 
   useEffect(() => {
-    if (textToSearch) {
-      search(textToSearch);
+    if (opening) {
+      setOpening(false);
+      if (textToSearch) {
+        search(textToSearch);
+      }
     }
-  }, []);
+  }, [opening, search, textToSearch]);
 
   return (
     <>
