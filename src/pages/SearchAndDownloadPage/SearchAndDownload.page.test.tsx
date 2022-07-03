@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import wrapper from "../../helper/test-context-builder";
 import { video } from "../../model/video";
@@ -25,10 +25,10 @@ const searchAVideo = async () => {
 };
 
 describe("<SearchAndDownloadPage>", () => {
-  describe("when the page is open", () => {
-    it("should display the searchbar", () => {
-      render(<SearchAndDownloadPage />, { wrapper });
-      expect(screen.getByTestId("searchBar")).toBeVisible();
+  describe("when the page is oppened", () => {
+    it("rend correctement", () => {
+      const container = render(<SearchAndDownloadPage />, { wrapper });
+      expect(container).toMatchSnapshot();
     });
   });
 

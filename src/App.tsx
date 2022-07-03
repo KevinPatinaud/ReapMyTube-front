@@ -12,6 +12,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<SearchAndDownloadPage />} />
+          <Route path="/:query" element={<SearchAndDownloadPage />} />
           <Route path="information" element={<InformationPage />} />
         </Routes>
       </div>

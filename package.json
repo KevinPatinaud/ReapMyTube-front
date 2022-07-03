@@ -65,6 +65,7 @@
   "devDependencies": {
     "@types/file-saver": "^2.0.5",
     "@types/react-modal": "^3.13.1",
+    "@types/react-test-renderer": "^18.0.0",
     "@types/stompjs": "^2.3.5",
     "@types/uuid": "^8.3.4",
     "dotenv": "^16.0.1"
@@ -87,7 +88,7 @@
     "coverageThreshold": {
       "global": {
         "statements": 78,
-        "branches": 77,
+        "branches": 70,
         "lines": 78,
         "functions": 73
       }
