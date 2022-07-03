@@ -1,42 +1,36 @@
 import { FC, useState } from "react";
 import { FaFilm, FaMusic, FaSearch } from "react-icons/fa";
-import styles from "./SearchVideo.module.css";
+import styles from "./FormVideo.module.css";
 import ChangeValueButton from "../../../../components/ChangeValueButton/ChangeValueButton.component";
-import { YoutubeService } from "../../../../services/Youtube/Youtube.service";
 import { useIntl } from "react-intl";
 import { TranslationKeys } from "../../../../locales/constants";
-import { video } from "../../../../model/video";
 
-const youtubeService = new YoutubeService();
-
-const SearchVideo: FC<{ setVideoList: (videos: video[]) => void }> = ({
-  setVideoList,
-}) => {
-  const [searchText, setSearchText] = useState("");
+const FormVideo: FC<{
+  previousTextToSearch: string | undefined;
+  search: (textToSearch: string) => void;
+}> = ({ previousTextToSearch, search }) => {
+  const [textToSearch, setTextToSearch] = useState(
+    previousTextToSearch ? previousTextToSearch : ""
+  );
 
   const intl = useIntl();
-
-  async function search() {
-    const videoAPIresponse = await youtubeService.search(searchText);
-    setVideoList(videoAPIresponse);
-  }
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        search();
+        search(textToSearch);
       }}
     >
       <ChangeValueButton values={[<FaMusic />, <FaFilm />]} />
       <input
         data-testid="searchBar"
-        value={searchText}
+        value={textToSearch}
         type="text"
         className={styles.searchInput}
         placeholder={intl.formatMessage({ id: TranslationKeys.SEARCH_VIDEO })}
         onChange={(e) => {
-          setSearchText(e.target.value);
+          setTextToSearch(e.target.value);
         }}
       />
       <button className={styles.searchButton} data-testid="searchBtn">
@@ -46,4 +40,4 @@ const SearchVideo: FC<{ setVideoList: (videos: video[]) => void }> = ({
   );
 };
 
-export default SearchVideo;
+export default FormVideo;

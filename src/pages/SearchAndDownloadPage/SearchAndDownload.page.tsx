@@ -1,41 +1,57 @@
-import { FC, useCallback, useState } from "react";
-import SearchVideo from "./components/Search/SearchVideo.component";
+import { FC, useCallback, useEffect, useReducer, useState } from "react";
 import Thumbnail from "./components/Thumbnail/thumbnail.component";
-import ModalLight from "./components/ModalLight/ModalLight.component";
-import { video } from "../../model/video";
+import InfoDownload from "./components/InfoDownload/InfoDownload.component";
 import React from "react";
 import { useIntl } from "react-intl";
+import { YoutubeService } from "../../services/Youtube/Youtube.service";
+import { useNavigate, useParams } from "react-router-dom";
+import FormVideo from "./components/Form/FormVideo.component";
 
 const SearchAndDownloadPage: FC = () => {
   const [videosThumbnails, setVideosThumbnails] = useState([] as JSX.Element[]);
   const [modalAlreadyDisplayed, setModalAlreadyDisplayed] = useState(false);
-
+  const navigate = useNavigate();
   const intl = useIntl();
+  const [textToSearch, setTextTosearch] = useState(
+    useParams<{ query: string }>().query
+  );
 
-  console.log(intl.locale);
+  const youtubeService = new YoutubeService();
+
+  const search = async (textToSearch: string) => {
+    navigate("../" + textToSearch);
+    setTextTosearch(textToSearch);
+
+    const videoAPIresponse =
+      textToSearch.length > 0 ? await youtubeService.search(textToSearch) : [];
+
+    setVideosThumbnails(
+      videoAPIresponse.map((video) => {
+        return (
+          <Thumbnail
+            key={video.id}
+            videoToDisplay={video}
+            onClick={() => {
+              setModalAlreadyDisplayed(true);
+            }}
+          />
+        );
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (textToSearch) {
+      search(textToSearch);
+    }
+  }, []);
 
   return (
     <>
-      <MemoSearchVideo
-        setVideoList={useCallback((videos: video[]) => {
-          setVideosThumbnails(
-            videos.map((video) => {
-              return (
-                <Thumbnail
-                  key={video.id}
-                  videoToDisplay={video}
-                  onClick={() => {
-                    setModalAlreadyDisplayed(true);
-                  }}
-                />
-              );
-            })
-          );
-        }, [])}
-      />
+      <MemoFormVideo previousTextToSearch={textToSearch} search={search} />
       {videosThumbnails}
       {modalAlreadyDisplayed && (
-        <ModalLight>
+        <InfoDownload>
           <div>
             <p>
               The generation of your media have been well started, but it can
@@ -46,12 +62,12 @@ const SearchAndDownloadPage: FC = () => {
               when it will be ready :-)
             </p>
           </div>
-        </ModalLight>
+        </InfoDownload>
       )}
     </>
   );
 };
 
-const MemoSearchVideo = React.memo(SearchVideo);
+const MemoFormVideo = React.memo(FormVideo);
 
 export default SearchAndDownloadPage;

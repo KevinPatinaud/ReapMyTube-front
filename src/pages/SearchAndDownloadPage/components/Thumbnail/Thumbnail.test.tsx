@@ -6,6 +6,7 @@ import userEvent from "@testing-library/user-event";
 import AppProviders from "../../../../providers";
 import { MediaService } from "../../../../services/Media/Media.serivce";
 import { act } from "react-dom/test-utils";
+import wrapper from "../../../../helper/test-context-builder";
 
 const MediaServiceMock = MediaService as jest.MockedClass<typeof MediaService>;
 MediaServiceMock.getWebsocketService = jest.fn().mockReturnValue(null);
@@ -37,15 +38,11 @@ describe("<Thumbnail>", () => {
         image: "url",
       } as video;
 
-      render(
-        <AppProviders>
-          <Thumbnail videoToDisplay={video} onClick={() => {}} />
-        </AppProviders>
-      );
-
-      act(() => {
-        userEvent.click(screen.getByTestId("thumbnail1"));
+      render(<Thumbnail videoToDisplay={video} onClick={() => {}} />, {
+        wrapper,
       });
+
+      userEvent.click(screen.getByTestId("thumbnail1"));
 
       expect(screen.findByTestId("loader1"));
     });

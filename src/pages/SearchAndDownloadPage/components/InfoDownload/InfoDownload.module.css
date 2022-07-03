@@ -1,0 +1,47 @@
+.closeButton {
+  color: #666;
+  background-color: transparent;
+  margin-top: 5px;
+  margin-right: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 25px;
+  width: 25px;
+  border-style: none;
+  font-weight: bold;
+  font-size: large;
+  cursor: pointer;
+}
+
+.divInfo {
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  width: 23%;
+  background-color: white;
+  height: fit-content;
+  border-radius: 15px;
+  background-color: #ddd;
+  border: groove;
+  color: #444;
+}
+
+.divInfoContent {
+  margin-top: 33px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+/*
+@media screen and (max-width: 900px) {
+  .header {
+    height: 60px;
+  }
+  .titleimg {
+    height: auto;
+    max-height: -webkit-fill-available;
+    max-width: 60%;
+  }
+}
+*/

@@ -25,10 +25,10 @@ const searchAVideo = async () => {
 };
 
 describe("<SearchAndDownloadPage>", () => {
-  describe("when the page is open", () => {
-    it("should display the searchbar", () => {
-      render(<SearchAndDownloadPage />, { wrapper });
-      expect(screen.getByTestId("searchBar")).toBeVisible();
+  describe("when the page is oppened", () => {
+    it("rend correctement", () => {
+      const container = render(<SearchAndDownloadPage />, { wrapper });
+      expect(container).toMatchSnapshot();
     });
   });
 

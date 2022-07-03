@@ -1,10 +1,9 @@
-import { FC } from "react";
-import LanguageBus from "../../bus/LanguageBus";
-import { supportedLocale } from "../../locales";
+import { FC, useContext } from "react";
+import { supportedLocales } from "../../locales";
 import styles from "./LanguageButton.module.css";
 import { CircleFlag } from "react-circle-flags";
 import { useIntl } from "react-intl";
-import { languageBus } from "../../model/langueBus";
+import { SwitchLanguageContext } from "../../providers/IntlProvider";
 
 const LanguageButton: FC = () => {
   const intl = useIntl();
@@ -13,12 +12,12 @@ const LanguageButton: FC = () => {
     <div className={styles.divLanguage}>
       <LanguageBtn
         countryCode="gb"
-        languageBtn={supportedLocale.English}
+        languageBtn={supportedLocales.English}
         currentLanguage={intl.locale}
       />
       <LanguageBtn
         countryCode="fr"
-        languageBtn={supportedLocale.French}
+        languageBtn={supportedLocales.French}
         currentLanguage={intl.locale}
       />
     </div>
@@ -30,6 +29,7 @@ const LanguageBtn: FC<{
   languageBtn: string;
   currentLanguage: string;
 }> = ({ countryCode, languageBtn, currentLanguage }) => {
+  const switchLanguage = useContext(SwitchLanguageContext);
   return (
     <CircleFlag
       data-testid={countryCode}
@@ -38,7 +38,7 @@ const LanguageBtn: FC<{
       className={styles.btnLanguage}
       onClick={() => {
         console.log("LanguageBtn : " + languageBtn);
-        LanguageBus.dispatch({ language: languageBtn } as languageBus);
+        switchLanguage(languageBtn);
       }}
     />
   );
