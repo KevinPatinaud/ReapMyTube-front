@@ -1,0 +1,20 @@
+.footer {
+  width: 100%;
+  height: 2em;
+  background-color: #ddd;
+  position: absolute;
+  bottom: 0;
+  border-top: 3px groove;
+}
+
+.link {
+  color: #444;
+  text-decoration: none;
+  margin-right: 1em;
+  margin-left: 1em;
+  vertical-align: -webkit-baseline-middle;
+}
+
+.linkActive {
+  font-weight: bold;
+}
