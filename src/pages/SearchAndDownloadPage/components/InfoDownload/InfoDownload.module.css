@@ -27,21 +27,17 @@
   color: #444;
 }
 
-.divInfoContent {
-  margin-top: 33px;
-  margin-right: 5px;
-  margin-left: 5px;
+@media screen and (max-width: 900px) {
+  .divInfo {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
 
-/*
-@media screen and (max-width: 900px) {
-  .header {
-    height: 60px;
-  }
-  .titleimg {
-    height: auto;
-    max-height: -webkit-fill-available;
-    max-width: 60%;
-  }
+.divInfoContent {
+  margin-top: 33px;
+  margin-right: 1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
 }
-*/

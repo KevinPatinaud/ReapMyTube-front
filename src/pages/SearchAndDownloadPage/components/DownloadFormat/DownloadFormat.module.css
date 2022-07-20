@@ -1,0 +1,18 @@
+.downloadFormat {
+  margin-top: 20px;
+  color: #595959;
+  padding: 18px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.downloadFormatButton {
+  height: 35px;
+  border: 1px solid #595959;
+  background: #595959;
+  text-align: top;
+  color: #ffffff;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+  font-size: 18px;
+}

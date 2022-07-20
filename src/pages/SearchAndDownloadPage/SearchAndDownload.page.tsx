@@ -1,79 +1,58 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Thumbnail from "./components/Thumbnail/Thumbnail";
 import InfoDownload from "./components/InfoDownload/InfoDownload";
-import React from "react";
 import { YoutubeService } from "../../services/Youtube/Youtube.service";
-import { useNavigate, useParams } from "react-router-dom";
-import FormVideo from "./components/Form/FormVideo";
+import FormVideo from "./components/Searchbar/Searchbar";
+import DownloadFormat, {
+  mediaType,
+} from "./components/DownloadFormat/DownloadFormat";
+import { video } from "../../model/video";
+import ThumbnailList from "./components/ThumbnailList/ThumbnailList";
 
 const youtubeService = new YoutubeService();
 
 const SearchAndDownloadPage: FC = () => {
-  const [videosThumbnails, setVideosThumbnails] = useState([] as JSX.Element[]);
   const [modalAlreadyDisplayed, setModalAlreadyDisplayed] = useState(false);
-  const navigate = useNavigate();
-  const [opening, setOpening] = useState(true);
+  const [videos, setVideos] = useState([] as video[]);
+  const [formatToDownload, setFormatToDownload] = useState(mediaType.video);
   const [textToSearch, setTextTosearch] = useState(
     useParams<{ query: string }>().query
   );
+  const navigate = useNavigate();
 
   const search = useCallback(
     async (query: string) => {
-      console.log("search");
       navigate("../" + query);
       setTextTosearch(query);
-
-      const videoAPIresponse =
-        query.length > 0 ? await youtubeService.search(query) : [];
-
-      setVideosThumbnails(
-        videoAPIresponse.map((video) => {
-          return (
-            <Thumbnail
-              key={video.id}
-              videoToDisplay={video}
-              onClick={() => {
-                setModalAlreadyDisplayed(true);
-              }}
-            />
-          );
-        })
-      );
+      setVideos(query.length > 0 ? await youtubeService.search(query) : []);
     },
     [navigate]
   );
 
   useEffect(() => {
-    if (opening) {
-      setOpening(false);
-      if (textToSearch) {
-        search(textToSearch);
-      }
+    if (textToSearch) {
+      search(textToSearch);
     }
-  }, [opening, search, textToSearch]);
+  }, []);
 
   return (
     <>
       <MemoFormVideo previousTextToSearch={textToSearch} search={search} />
-      {videosThumbnails}
-      {modalAlreadyDisplayed && (
-        <InfoDownload>
-          <div>
-            <p>
-              The generation of your media have been well started, but it can
-              take several minutes to generate the file.
-            </p>
-            <p>
-              So please be patient, the file will be automatically downloaded
-              when it will be ready :-)
-            </p>
-          </div>
-        </InfoDownload>
-      )}
+      {videos.length > 0 && <DownloadFormat onChange={setFormatToDownload} />}
+      <MemoThumbnailList
+        videos={videos}
+        formatToDownload={formatToDownload}
+        onThumbnailClick={() => {
+          setModalAlreadyDisplayed(true);
+        }}
+      />
+      {modalAlreadyDisplayed && <InfoDownload />}
     </>
   );
 };
 
 const MemoFormVideo = React.memo(FormVideo);
+const MemoThumbnailList = React.memo(ThumbnailList);
 
 export default SearchAndDownloadPage;

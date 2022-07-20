@@ -25,13 +25,6 @@ const searchAVideo = async () => {
 };
 
 describe("<SearchAndDownloadPage>", () => {
-  describe("when the page is oppened", () => {
-    it("rend correctement", () => {
-      const container = render(<SearchAndDownloadPage />, { wrapper });
-      expect(container).toMatchSnapshot();
-    });
-  });
-
   describe("when the user search a video", () => {
     it("should display the searchbar", async () => {
       searchAVideo();

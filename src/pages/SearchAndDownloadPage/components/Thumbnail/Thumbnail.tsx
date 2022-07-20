@@ -1,16 +1,18 @@
 import { FC, useState } from "react";
+import { FaFilm, FaMusic } from "react-icons/fa";
 import { video } from "../../../../model/video";
 import { MediaService } from "../../../../services/Media/Media.serivce";
+import { mediaType } from "../DownloadFormat/DownloadFormat";
 import styles from "./Thumbnail.module.css";
 
 const mediaService = new MediaService();
 
 const Thumbnail: FC<{
-  videoToDisplay: video;
+  video: video;
+  formatToDownload: mediaType;
   onClick: () => void;
-}> = ({ videoToDisplay, onClick }) => {
+}> = ({ video, formatToDownload, onClick }) => {
   const [displayLoader, setDisplayLoader] = useState(false);
-  const [video] = useState(videoToDisplay);
 
   return (
     <div
@@ -29,6 +31,11 @@ const Thumbnail: FC<{
         );
       }}
     >
+      {/*   
+      <div className={styles.downloadFormat}>
+        {formatToDownload === mediaType.audio ? <FaMusic /> : <FaFilm />}
+      </div>
+    */}
       <img
         src={video.image}
         alt={`video ${video.title}`}

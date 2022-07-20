@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
-import { FaFilm, FaMusic, FaSearch } from "react-icons/fa";
-import styles from "./FormVideo.module.css";
-import ChangeValueButton from "../../../../components/ChangeValueButton/ChangeValueButton";
+import { FaSearch } from "react-icons/fa";
+import styles from "./Searchbar.module.css";
 import { useIntl } from "react-intl";
 import { TranslationKeys } from "../../../../locales/constants";
 
@@ -22,7 +21,6 @@ const FormVideo: FC<{
         search(textToSearch);
       }}
     >
-      <ChangeValueButton values={[<FaMusic />, <FaFilm />]} />
       <input
         data-testid="searchBar"
         value={textToSearch}

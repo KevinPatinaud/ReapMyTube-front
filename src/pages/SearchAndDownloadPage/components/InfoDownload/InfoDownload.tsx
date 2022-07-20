@@ -1,18 +1,20 @@
 import { FC, useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import styles from "./InfoDownload.module.css";
+import { TranslationKeys } from "../../../../locales/constants";
 
 const enum display {
   block = "block",
   none = "none",
 }
 
-const InfoDownload: FC<{ children: JSX.Element }> = ({ children }) => {
+const InfoDownload: FC = () => {
   const [openned, setOpenned] = useState(true);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setOpenned(false);
-    }, 10 * 1000);
+    }, 60 * 1000);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -30,7 +32,9 @@ const InfoDownload: FC<{ children: JSX.Element }> = ({ children }) => {
       >
         X
       </button>
-      <div className={styles.divInfoContent}>{children}</div>
+      <div className={styles.divInfoContent}>
+        <FormattedMessage id={TranslationKeys.SEARCH_MODAL_WAIT_DOWNLOAD} />
+      </div>
     </div>
   );
 };
