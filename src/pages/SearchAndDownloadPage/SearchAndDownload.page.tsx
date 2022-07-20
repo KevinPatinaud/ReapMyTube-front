@@ -4,63 +4,55 @@ import Thumbnail from "./components/Thumbnail/Thumbnail";
 import InfoDownload from "./components/InfoDownload/InfoDownload";
 import { YoutubeService } from "../../services/Youtube/Youtube.service";
 import FormVideo from "./components/Searchbar/Searchbar";
-import DownloadFormat from "./components/DownloadFormat/DownloadFormat";
+import DownloadFormat, {
+  mediaType,
+} from "./components/DownloadFormat/DownloadFormat";
+import { video } from "../../model/video";
+import ThumbnailList from "./components/ThumbnailList/ThumbnailList";
 
 const youtubeService = new YoutubeService();
 
 const SearchAndDownloadPage: FC = () => {
-  const [videosThumbnails, setVideosThumbnails] = useState([] as JSX.Element[]);
   const [modalAlreadyDisplayed, setModalAlreadyDisplayed] = useState(false);
-  const navigate = useNavigate();
-  const [opening, setOpening] = useState(true);
+  const [videos, setVideos] = useState([] as video[]);
+  const [formatToDownload, setFormatToDownload] = useState(mediaType.video);
   const [textToSearch, setTextTosearch] = useState(
     useParams<{ query: string }>().query
   );
+  const navigate = useNavigate();
 
   const search = useCallback(
     async (query: string) => {
       navigate("../" + query);
       setTextTosearch(query);
-
-      const videoAPIresponse =
-        query.length > 0 ? await youtubeService.search(query) : [];
-
-      setVideosThumbnails(
-        videoAPIresponse.map((video) => {
-          return (
-            <Thumbnail
-              key={video.id}
-              videoToDisplay={video}
-              onClick={() => {
-                setModalAlreadyDisplayed(true);
-              }}
-            />
-          );
-        })
-      );
+      setVideos(query.length > 0 ? await youtubeService.search(query) : []);
     },
     [navigate]
   );
 
   useEffect(() => {
-    if (opening) {
-      setOpening(false);
-      if (textToSearch) {
-        search(textToSearch);
-      }
+    if (textToSearch) {
+      search(textToSearch);
     }
-  }, [opening, search, textToSearch]);
+  }, []);
 
   return (
     <>
       <MemoFormVideo previousTextToSearch={textToSearch} search={search} />
-      {videosThumbnails.length > 0 && <DownloadFormat />}
-      {videosThumbnails}
+      {videos.length > 0 && <DownloadFormat onChange={setFormatToDownload} />}
+      <MemoThumbnailList
+        videos={videos}
+        formatToDownload={formatToDownload}
+        onThumbnailClick={() => {
+          setModalAlreadyDisplayed(true);
+        }}
+      />
       {modalAlreadyDisplayed && <InfoDownload />}
     </>
   );
 };
 
 const MemoFormVideo = React.memo(FormVideo);
+const MemoThumbnailList = React.memo(ThumbnailList);
 
 export default SearchAndDownloadPage;

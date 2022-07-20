@@ -27,20 +27,17 @@
   color: #444;
 }
 
-.divInfoContent {
-  margin-top: 33px;
-  margin-right: 1em;
-  margin-left: 1em;
-  margin-bottom: 1em;
-}
-
 @media screen and (max-width: 900px) {
   .divInfo {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
-    height: 90%;
-    margin-top: 5%;
-    margin-bottom: 5%;
   }
+}
+
+.divInfoContent {
+  margin-top: 33px;
+  margin-right: 1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
 }

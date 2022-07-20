@@ -8,11 +8,11 @@ export enum mediaType {
 }
 
 export type DownloadFormatProps = {
-  onChange?: (mediaType: mediaType) => void;
+  onChange: (mediaType: mediaType) => void;
 };
 
-const DownloadFormat: FC<DownloadFormatProps> = ({ onChange = () => {} }) => {
-  const [mediaTypeSelected, SetMediaTypeSelected] = useState(mediaType.audio);
+const DownloadFormat: FC<DownloadFormatProps> = ({ onChange }) => {
+  const [mediaTypeSelected, SetMediaTypeSelected] = useState(mediaType.video);
 
   return (
     <div className={styles.downloadFormat}>
