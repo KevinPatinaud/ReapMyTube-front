@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { FaMusic } from "react-icons/fa";
 import LanguageButton from "../LanguageButton";
 import styles from "./Header.module.css";
 

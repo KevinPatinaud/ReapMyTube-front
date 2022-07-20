@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import styles from "./App.module.css";
 import InformationPage from "./pages/Information";
-import SearchAndDownloadPage from "./pages/SearchAndDownloadPage/SearchAndDownload.page";
+import SearchAndDownloadPage from "./pages/SearchAndDownloadPage";
 import AppProviders from "./providers";
 import Footer from "./components/Footer/Footer";
 import Body from "./components/Body/Body";

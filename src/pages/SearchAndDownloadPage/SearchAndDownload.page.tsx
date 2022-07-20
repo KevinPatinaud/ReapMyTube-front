@@ -1,10 +1,10 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Thumbnail from "./components/Thumbnail/Thumbnail";
 import InfoDownload from "./components/InfoDownload/InfoDownload";
-import React from "react";
 import { YoutubeService } from "../../services/Youtube/Youtube.service";
-import { useNavigate, useParams } from "react-router-dom";
-import FormVideo from "./components/Form/FormVideo";
+import FormVideo from "./components/Searchbar/Searchbar";
+import DownloadFormat from "./components/DownloadFormat/DownloadFormat";
 
 const youtubeService = new YoutubeService();
 
@@ -19,7 +19,6 @@ const SearchAndDownloadPage: FC = () => {
 
   const search = useCallback(
     async (query: string) => {
-      console.log("search");
       navigate("../" + query);
       setTextTosearch(query);
 
@@ -55,21 +54,9 @@ const SearchAndDownloadPage: FC = () => {
   return (
     <>
       <MemoFormVideo previousTextToSearch={textToSearch} search={search} />
+      {videosThumbnails.length > 0 && <DownloadFormat />}
       {videosThumbnails}
-      {modalAlreadyDisplayed && (
-        <InfoDownload>
-          <div>
-            <p>
-              The generation of your media have been well started, but it can
-              take several minutes to generate the file.
-            </p>
-            <p>
-              So please be patient, the file will be automatically downloaded
-              when it will be ready :-)
-            </p>
-          </div>
-        </InfoDownload>
-      )}
+      {modalAlreadyDisplayed && <InfoDownload />}
     </>
   );
 };
